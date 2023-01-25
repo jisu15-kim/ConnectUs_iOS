@@ -20,11 +20,12 @@ class PostCell: UITableViewCell {
         return view
     }()
     
-    private var spacingView = UIView()
+    private var spacingView1 = UIView()
+    private var spacingView2 = UIView()
     
     private var userIdLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12, weight: .bold)
+        label.font = .systemFont(ofSize: 15, weight: .bold)
         return label
     }()
     
@@ -37,8 +38,10 @@ class PostCell: UITableViewCell {
     
     private var bodyLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12, weight: .regular)
+        label.font = .systemFont(ofSize: 13, weight: .regular)
         label.textColor = .label
+        label.contentMode = .topLeft
+        label.numberOfLines = 0
         return label
     }()
     
@@ -53,6 +56,7 @@ class PostCell: UITableViewCell {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.distribution = .fill
+        stack.spacing = 15
         return stack
     }()
     
@@ -67,12 +71,19 @@ class PostCell: UITableViewCell {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.distribution = .fill
+        stack.spacing = 20
         return stack
     }()
     
     override func prepareForReuse() {
         super.prepareForReuse()
         profileImageView.image = UIImage()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15))
     }
 
     override func awakeFromNib() {
@@ -103,10 +114,10 @@ class PostCell: UITableViewCell {
         [userIdLabel, updateTimeLabel].forEach {
             userStack.addArrangedSubview($0)
         }
-        [userStack, bodyLabel].forEach {
+        [userStack, bodyLabel, spacingView2].forEach {
             bodyStack.addArrangedSubview($0)
         }
-        [profileImageView, spacingView].forEach {
+        [profileImageView, spacingView1].forEach {
             imageStack.addArrangedSubview($0)
         }
         [imageStack, bodyStack].forEach {

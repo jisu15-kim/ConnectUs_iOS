@@ -16,9 +16,9 @@ enum ColorPreset: CaseIterable {
     var colors: UIColor {
         switch self {
         case .background:
-            return #colorLiteral(red: 0.2898363471, green: 0.3367882371, blue: 0.35048002, alpha: 1)
+            return #colorLiteral(red: 0.1431817412, green: 0.1622395217, blue: 0.2208084464, alpha: 1)
         case .accent00:
-            return #colorLiteral(red: 0.9950535893, green: 0.7137610316, blue: 0.007481636479, alpha: 1)
+            return #colorLiteral(red: 0.9673457742, green: 0.5055060983, blue: 0.3958424926, alpha: 1)
         case .accent01:
             return #colorLiteral(red: 0.9437445998, green: 0.2548723221, blue: 0.0589184165, alpha: 1)
         case .accent02:
