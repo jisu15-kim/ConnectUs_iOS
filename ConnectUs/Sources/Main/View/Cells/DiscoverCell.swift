@@ -7,20 +7,21 @@
 
 import UIKit
 
-class DiscoverCell: UITableViewCell {
+class DiscoverCell: UICollectionViewCell {
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.layer.cornerRadius = 10
+        self.clipsToBounds = true
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
     func configure() {
-        
+        self.contentView.backgroundColor = .gray
     }
 }

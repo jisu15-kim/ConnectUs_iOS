@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-class PostCell: UITableViewCell {
+class PostCell: UICollectionViewCell {
     
     var viewModel: PostViewModel?
     var imageSize: Int = 60
@@ -93,12 +93,6 @@ class PostCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func setupCellLayout() {
