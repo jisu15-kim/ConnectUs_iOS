@@ -30,6 +30,8 @@
 		CDE7F093298193FA008F682F /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7F092298193FA008F682F /* Constant.swift */; };
 		CDE7F09529819634008F682F /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7F09429819634008F682F /* PostViewModel.swift */; };
 		CDE7F09829819CEB008F682F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CDE7F09729819CEB008F682F /* Kingfisher */; };
+		CDE7F09B29823C63008F682F /* DiscoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7F09A29823C63008F682F /* DiscoverCell.swift */; };
+		CDE7F09D29823C72008F682F /* SearchBarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7F09C29823C72008F682F /* SearchBarHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 		CDE7F090298193E2008F682F /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		CDE7F092298193FA008F682F /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		CDE7F09429819634008F682F /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		CDE7F09A29823C63008F682F /* DiscoverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCell.swift; sourceTree = "<group>"; };
+		CDE7F09C29823C72008F682F /* SearchBarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,7 +168,7 @@
 			children = (
 				CD6AE566297EF17B00720EB9 /* MainViewController.swift */,
 				CD6AE568297EF17B00720EB9 /* Main.storyboard */,
-				CDE7F07F298173FA008F682F /* PostCell.swift */,
+				CDE7F09929823C4B008F682F /* Cells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -193,6 +197,16 @@
 				CDE7F092298193FA008F682F /* Constant.swift */,
 			);
 			path = Secret;
+			sourceTree = "<group>";
+		};
+		CDE7F09929823C4B008F682F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CDE7F07F298173FA008F682F /* PostCell.swift */,
+				CDE7F09A29823C63008F682F /* DiscoverCell.swift */,
+				CDE7F09C29823C72008F682F /* SearchBarHeaderView.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,7 +293,9 @@
 				CD6AE567297EF17B00720EB9 /* MainViewController.swift in Sources */,
 				CDE7F091298193E2008F682F /* Secret.swift in Sources */,
 				CD6AE58F297EFB8500720EB9 /* ColorPreset.swift in Sources */,
+				CDE7F09D29823C72008F682F /* SearchBarHeaderView.swift in Sources */,
 				CDE7F093298193FA008F682F /* Constant.swift in Sources */,
+				CDE7F09B29823C63008F682F /* DiscoverCell.swift in Sources */,
 				CDE7F080298173FA008F682F /* PostCell.swift in Sources */,
 				CD6AE581297EF6BF00720EB9 /* UILabel+Padding.swift in Sources */,
 				CDE7F09529819634008F682F /* PostViewModel.swift in Sources */,

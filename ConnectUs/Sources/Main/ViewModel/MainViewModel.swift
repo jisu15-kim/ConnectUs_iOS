@@ -5,7 +5,7 @@
 //  Created by 김지수 on 2023/01/25.
 //
 
-import Foundation
+import UIKit
 
 class MainViewModel {
     
@@ -35,5 +35,9 @@ class MainViewModel {
     
     func getCellViewModel(indexpath: IndexPath) -> PostViewModel {
         return postViewModels[indexpath.row]
+    }
+    
+    func getNumberOfSections() -> Int {
+        return 3
     }
 }

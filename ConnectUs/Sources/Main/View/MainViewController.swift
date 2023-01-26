@@ -35,6 +35,8 @@ class MainViewController: BaseViewController {
 
     private func setupTableView() {
         tableView.register(PostCell.self, forCellReuseIdentifier: "PostCell")
+        tableView.register(DiscoverCell.self, forCellReuseIdentifier: "DiscoverCell")
+        tableView.register(SearchBarHeaderView.self, forHeaderFooterViewReuseIdentifier: "SearchBarHeaderView")
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = ColorPreset.background.colors
@@ -44,24 +46,64 @@ class MainViewController: BaseViewController {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return viewModel.getNumberOfSections()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.postViewModels.count
+        
+        switch section {
+        case 0:
+            return 1
+        default:
+            return viewModel.postViewModels.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell else { return UITableViewCell() }
-        cell.viewModel = viewModel.getCellViewModel(indexpath: indexPath)
-        cell.configure()
-        cell.selectionStyle = .none
-        return cell
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DiscoverCell", for: indexPath) as? DiscoverCell else { return UITableViewCell() }
+            cell.configure()
+            cell.selectionStyle = .none
+        default:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell else { return UITableViewCell() }
+            cell.viewModel = viewModel.getCellViewModel(indexpath: indexPath)
+            cell.configure()
+            cell.selectionStyle = .none
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 500
+        
+        switch indexPath.section {
+        case 0:
+            return 200
+        default:
+            return 500
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch section {
+        case 1:
+            guard let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SearchBarHeaderView") as? SearchBarHeaderView else { return UIView() }
+            cell.configure()
+            return cell
+        default:
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 1:
+            return 50
+        default:
+            return 0
+        }
     }
 }
 
