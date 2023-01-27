@@ -23,7 +23,11 @@ class PostCell: UICollectionViewCell {
     
     private var spacingView1 = UIView()
     private var spacingView2 = UIView()
-    private var spacingview3 = UIView()
+    private var spacingview3: UIView = {
+        let view = UIView()
+        view.setContentHuggingPriority(.defaultLow, for: .vertical)
+        return view
+    }()
     
     private var userIdLabel: UILabel = {
         let label = UILabel()
@@ -34,6 +38,8 @@ class PostCell: UICollectionViewCell {
     private var bodyImageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
+        view.setContentHuggingPriority(.defaultLow, for: .vertical)
+        view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         return view
     }()
     
@@ -46,10 +52,11 @@ class PostCell: UICollectionViewCell {
     
     private var bodyLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 13, weight: .regular)
+        label.font = .systemFont(ofSize: 14, weight: .regular)
         label.textColor = .label
         label.contentMode = .topLeft
         label.numberOfLines = 0
+        label.setContentCompressionResistancePriority(.required, for: .vertical)
         return label
     }()
     
@@ -73,6 +80,52 @@ class PostCell: UICollectionViewCell {
         stack.axis = .vertical
         stack.distribution = .fill
         stack.spacing = 15
+        return stack
+    }()
+    
+    //MARK: - 하단 ICON 들 (좋아요 / 코멘트)
+    
+    var likeIcon: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFit
+        view.image = UIImage(systemName: "heart.fill")
+        return view
+    }()
+    
+    var likeCountLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+    
+    var commentIcon: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFit
+        view.image = UIImage(systemName: "ellipsis.message.fill")
+        return view
+    }()
+    
+    var commentCountLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 14, weight: .regular)
+        return label
+    }()
+    
+    var iconSpacing1 = UIView()
+    var iconSpacing2 = UIView()
+    
+    var shareIcon: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFit
+        view.image = UIImage(systemName: "arrowshape.turn.up.forward.fill")
+        view.setContentCompressionResistancePriority(.required, for: .vertical)
+        return view
+    }()
+    
+    lazy var iconsStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.spacing = 5
         return stack
     }()
     
@@ -107,8 +160,16 @@ class PostCell: UICollectionViewCell {
         userIdLabel.text = vm.postResult.userId
         updateTimeLabel.text = vm.postResult.updateAt
         bodyLabel.text = vm.postResult.content
-        profileImageView.kf.setImage(with: URL(string: vm.postResult.profileImgUrl ?? ""))
+        likeCountLabel.text = "\(vm.postResult.postLikeCount)"
+        commentCountLabel.text = "\(vm.postResult.commentCount ?? 0)"
+
+        // KINGFISHER 이미지 셋업
+        profileImageView.kf.indicatorType = .activity
+        profileImageView.kf.setImage(with: URL(string: vm.postResult.profileImgUrl ?? ""), placeholder: UIImage(named: "defaultProfile"))
+        
+        bodyImageView.kf.indicatorType = .activity
         bodyImageView.kf.setImage(with: URL(string: vm.postResult.postImgRes?[0].postImgUrl ?? ""))
+
     }
     
     private func setupLayout() {
@@ -120,30 +181,38 @@ class PostCell: UICollectionViewCell {
         [profileImageView, infoStack].forEach {
             userStack.addArrangedSubview($0)
         }
-        [userStack, bodyLabel, bodyImageView, spacingview3].forEach {
+        [likeIcon, likeCountLabel, iconSpacing1, commentIcon, commentCountLabel, iconSpacing2, shareIcon].forEach {
+            iconsStack.addArrangedSubview($0)
+        }
+        [userStack, bodyLabel, bodyImageView, iconsStack, spacingview3].forEach {
             bodyStack.addArrangedSubview($0)
         }
-        
         bodyStack.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(15)
         }
-        
         userStack.snp.makeConstraints { make in
             make.height.equalTo(imageSize)
         }
-        
         profileImageView.snp.makeConstraints { make in
             make.width.equalTo(profileImageView.snp.height)
         }
-        
         [spacingView1, spacingView2].forEach {
             $0.snp.makeConstraints { make in
                 make.height.equalTo(infoStackSpacingHeight)
             }
         }
+        [likeIcon, commentIcon, shareIcon].forEach { icon in
+            icon.snp.makeConstraints { make in
+                make.width.equalTo(icon.snp.height)
+            }
+            icon.tintColor = .white
+        }
         
+        iconSpacing1.snp.makeConstraints { make in
+            make.width.equalTo(15)
+        }
         bodyImageView.snp.makeConstraints { make in
-            make.height.equalTo(bodyImageView.snp.width).multipliedBy(0.7)
+            make.height.lessThanOrEqualTo(bodyImageView.snp.width).multipliedBy(0.65)
         }
         
         profileImageView.layer.cornerRadius = CGFloat(imageSize / 2)
