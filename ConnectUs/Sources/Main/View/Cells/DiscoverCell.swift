@@ -6,8 +6,18 @@
 //
 
 import UIKit
+import Kingfisher
+import SnapKit
 
 class DiscoverCell: UICollectionViewCell {
+    
+    var imageUrl: String?
+    
+    private var imageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        return view
+    }()
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -22,6 +32,14 @@ class DiscoverCell: UICollectionViewCell {
     }
 
     func configure() {
-        self.contentView.backgroundColor = .gray
+        setupLayout()
+        self.imageView.kf.setImage(with: URL(string: imageUrl ?? ""))
+    }
+    
+    func setupLayout() {
+        self.contentView.addSubview(imageView)
+        imageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }

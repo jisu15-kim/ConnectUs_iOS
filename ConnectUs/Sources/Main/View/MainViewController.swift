@@ -94,7 +94,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 10
+            return DummyImage.dummyImageUrl.count
         default:
             return viewModel.postViewModels.count
         }
@@ -104,6 +104,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         switch indexPath.section {
         case 0:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverCell", for: indexPath) as? DiscoverCell else { return UICollectionViewCell() }
+            cell.imageUrl = DummyImage.randomDummyImage[indexPath.row]
             cell.configure()
             return cell
         default:
