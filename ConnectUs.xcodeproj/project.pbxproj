@@ -28,11 +28,11 @@
 		CDE7F08E2981934C008F682F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CDE7F08D2981934C008F682F /* Alamofire */; };
 		CDE7F091298193E2008F682F /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7F090298193E2008F682F /* Secret.swift */; };
 		CDE7F093298193FA008F682F /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7F092298193FA008F682F /* Constant.swift */; };
-		CDE7F09529819634008F682F /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7F09429819634008F682F /* PostViewModel.swift */; };
 		CDE7F09829819CEB008F682F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CDE7F09729819CEB008F682F /* Kingfisher */; };
 		CDE7F09B29823C63008F682F /* DiscoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7F09A29823C63008F682F /* DiscoverCell.swift */; };
 		CDE7F09D29823C72008F682F /* SearchBarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7F09C29823C72008F682F /* SearchBarHeaderView.swift */; };
 		CDE7F09F29843834008F682F /* DummyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7F09E29843834008F682F /* DummyImage.swift */; };
+		CDE7F0A229843BBA008F682F /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDE7F0A129843BBA008F682F /* Profile.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,10 +57,10 @@
 		CDE7F08A29819325008F682F /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		CDE7F090298193E2008F682F /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		CDE7F092298193FA008F682F /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		CDE7F09429819634008F682F /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		CDE7F09A29823C63008F682F /* DiscoverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCell.swift; sourceTree = "<group>"; };
 		CDE7F09C29823C72008F682F /* SearchBarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarHeaderView.swift; sourceTree = "<group>"; };
 		CDE7F09E29843834008F682F /* DummyImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyImage.swift; sourceTree = "<group>"; };
+		CDE7F0A129843BBA008F682F /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +142,7 @@
 		CD6AE589297EF6FD00720EB9 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				CDE7F0A029843BB1008F682F /* Profile */,
 				CD6AE58A297EF72700720EB9 /* Main */,
 			);
 			path = Sources;
@@ -160,6 +161,7 @@
 		CD6AE58B297EF73200720EB9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CDE7F09E29843834008F682F /* DummyImage.swift */,
 				CDE7F07B29817348008F682F /* PostModel.swift */,
 			);
 			path = Model;
@@ -179,7 +181,6 @@
 			isa = PBXGroup;
 			children = (
 				CDE7F07D29817383008F682F /* MainViewModel.swift */,
-				CDE7F09429819634008F682F /* PostViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -207,9 +208,16 @@
 				CDE7F07F298173FA008F682F /* PostCell.swift */,
 				CDE7F09A29823C63008F682F /* DiscoverCell.swift */,
 				CDE7F09C29823C72008F682F /* SearchBarHeaderView.swift */,
-				CDE7F09E29843834008F682F /* DummyImage.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		CDE7F0A029843BB1008F682F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				CDE7F0A129843BBA008F682F /* Profile.storyboard */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +290,7 @@
 			files = (
 				CD6AE56F297EF17C00720EB9 /* LaunchScreen.storyboard in Resources */,
 				CD6AE56C297EF17C00720EB9 /* Assets.xcassets in Resources */,
+				CDE7F0A229843BBA008F682F /* Profile.storyboard in Resources */,
 				CD6AE56A297EF17B00720EB9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,7 +311,6 @@
 				CDE7F09B29823C63008F682F /* DiscoverCell.swift in Sources */,
 				CDE7F080298173FA008F682F /* PostCell.swift in Sources */,
 				CD6AE581297EF6BF00720EB9 /* UILabel+Padding.swift in Sources */,
-				CDE7F09529819634008F682F /* PostViewModel.swift in Sources */,
 				CD6AE583297EF6BF00720EB9 /* CustomNaviBarItem.swift in Sources */,
 				CD6AE587297EF6BF00720EB9 /* IndicatorView.swift in Sources */,
 				CDE7F08B29819325008F682F /* NetworkService.swift in Sources */,

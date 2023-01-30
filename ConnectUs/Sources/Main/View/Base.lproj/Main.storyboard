@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IbN-wh-BwB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UDa-vs-ZVa">
     <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,15 +15,31 @@
             <objects>
                 <viewController storyboardIdentifier="MainViewController" id="BYZ-38-t0r" customClass="MainViewController" customModule="ConnectUs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C30-bh-rab">
-                                <rect key="frame" x="0.0" y="103" width="393" height="749"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewLayout key="collectionViewLayout" id="dpO-n7-sm7"/>
                                 <cells/>
                             </collectionView>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOv-IL-vvB">
+                                <rect key="frame" x="343" y="719" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="WBT-SB-TaW"/>
+                                    <constraint firstAttribute="width" secondItem="LOv-IL-vvB" secondAttribute="height" multiplier="1:1" id="axF-27-fGb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="arrow.up.circle.fill" catalog="system" symbolScale="large" renderingMode="original"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="25" scale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="scrollUpButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="txv-Hm-dHQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -31,21 +48,25 @@
                             <constraint firstItem="C30-bh-rab" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Pg6-Kz-aGa"/>
                             <constraint firstItem="C30-bh-rab" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="X2l-Ml-UWS"/>
                             <constraint firstAttribute="bottom" secondItem="C30-bh-rab" secondAttribute="bottom" id="brH-N9-aHs"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LOv-IL-vvB" secondAttribute="bottom" id="jvq-WI-6wj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LOv-IL-vvB" secondAttribute="trailing" id="z8w-HU-OJ7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Connect Us" id="px8-EJ-6kA"/>
                     <connections>
                         <outlet property="collectionView" destination="C30-bh-rab" id="FB1-94-Vi0"/>
+                        <outlet property="scrollUpButton" destination="LOv-IL-vvB" id="WQQ-YT-ArX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1990.0763358778624" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="1063" y="694"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Home-->
         <scene sceneID="Qkq-pK-Flg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IbN-wh-BwB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="rectangle.portrait.tophalf.inset.filled" catalog="system" id="tgs-4m-Mbe"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gPz-Qp-3YW">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -58,10 +79,44 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VIr-Zd-DwD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1063.3587786259541" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="1062" y="-33"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="lb7-5U-0Ot">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="profile" storyboardName="Profile" id="RIb-fB-30t" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="ztH-vd-GlQ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K8n-tQ-Ase" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1962" y="-311"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="uKu-ko-tTO">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="UDa-vs-ZVa" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="H8W-Pw-WAl">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.1467528045" green="0.16164246199999999" blue="0.21604931350000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.90711659190000005" green="0.52983146910000001" blue="0.42364001270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" red="0.1467528045" green="0.16164246199999999" blue="0.21604931350000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="selectedImageTintColor" red="0.90711659190000005" green="0.52983146910000001" blue="0.42364001270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="IbN-wh-BwB" kind="relationship" relationship="viewControllers" id="xkI-rP-ydq"/>
+                        <segue destination="RIb-fB-30t" kind="relationship" relationship="viewControllers" id="eiX-Pz-kRP"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OUZ-Hi-nof" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1062" y="-743"/>
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.up.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="rectangle.portrait.tophalf.inset.filled" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

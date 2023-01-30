@@ -6,35 +6,21 @@
 //
 
 import UIKit
+import Combine
 
 class MainViewModel {
     
-    var reloadTableView: (() -> Void)?
-    
-    var postLists = [PostResult]()
-    var postViewModels = [PostViewModel]() {
-        didSet {
-            reloadTableView?()
-        }
+    init(results: [PostResult] = []) {
+        postLists = CurrentValueSubject(results)
     }
+    
+    var postLists: CurrentValueSubject<[PostResult], Never>
+
     
     func getPosts() {
         NetworkService().getFeedsNetworkData { [weak self] posts in
-            self?.fetchData(postResult: posts)
+            self?.postLists.send(posts)
         }
-    }
-    
-    func fetchData(postResult: [PostResult]) {
-        postLists = postResult
-        var viewModels = [PostViewModel]()
-        postResult.forEach {
-            viewModels.append(PostViewModel(postResult: $0))
-        }
-        self.postViewModels = viewModels
-    }
-    
-    func getCellViewModel(indexpath: IndexPath) -> PostViewModel {
-        return postViewModels[indexpath.row]
     }
     
     func getNumberOfSections() -> Int {

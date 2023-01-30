@@ -6,31 +6,67 @@
 //
 
 import UIKit
+import Combine
 
 class MainViewController: BaseViewController {
     
-    private var models: [PostModel] = []
+    // MVVM
     private var viewModel: MainViewModel = MainViewModel()
-
+    
+    // Combine
+    private var subscriptions = Set<AnyCancellable>()
+    
+    // 스크롤 업 버튼
+    private var offsetY: Float = 600.0
+    @IBOutlet weak var scrollUpButton: UIButton!
+    
+    enum ScrollUpButtonState: CaseIterable {
+        case show
+        case hide
+        
+        var alpha: CGFloat {
+            switch self {
+            case .show:
+                return 1.0
+            case .hide:
+                return 0
+            }
+        }
+    }
+    var scrollButtonState = CurrentValueSubject<ScrollUpButtonState, Never>(.hide)
+    
+    // CollectionView
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViewModel()
         setupCollectionView()
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        view.backgroundColor = ColorPreset.background.colors
+        bind()
+        viewModel.getPosts()
+        setupUI()
     }
     
-    private func setupViewModel() {
-        viewModel.getPosts()
+    // Combine 바인드 !
+    private func bind() {
+        viewModel.postLists
+            .receive(on: RunLoop.main)
+            .sink { _ in
+                self.collectionView.reloadData()
+            }.store(in: &subscriptions)
         
-        // reload tableview closure
-        viewModel.reloadTableView = { [weak self] in
-            DispatchQueue.main.async {
-                self?.collectionView.reloadData()
-            }
-        }
+        scrollButtonState
+            .sink { [weak self] state in
+                print("Combine으로 들어옴")
+                UIView.animate(withDuration: 0.5, delay: 0.5) {
+                    self?.scrollUpButton.alpha = state.alpha
+                }
+            }.store(in: &subscriptions)
+    }
+    
+    private func setupUI() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor = ColorPreset.background.colors
+        scrollUpButton.tintColor = ColorPreset.accent00.colors
     }
 
     private func setupCollectionView() {
@@ -84,6 +120,11 @@ class MainViewController: BaseViewController {
         section.boundarySupplementaryItems = [header]
         return section
     }
+    
+    @IBAction func scrollUpButtonTapped(_ sender: UIButton) {
+
+        collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -96,7 +137,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 0:
             return DummyImage.dummyImageUrl.count
         default:
-            return viewModel.postViewModels.count
+            return viewModel.postLists.value.count
         }
     }
     
@@ -109,7 +150,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         default:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as? PostCell else { return UICollectionViewCell() }
-            cell.viewModel = viewModel.postViewModels[indexPath.row]
+            
+            cell.postResult = viewModel.postLists.value[indexPath.row]
             cell.configure()
             return cell
         }
@@ -125,68 +167,20 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return UICollectionReusableView()
         }
     }
+    
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offset = scrollView.contentOffset.y
+        print("OFFSET: \(offset)")
+        if Float(offset) >= offsetY {
+            if scrollButtonState.value == .hide {
+                scrollButtonState.send(.show)
+            }
+        } else {
+            if scrollButtonState.value == .show {
+                scrollButtonState.send(.hide)
+            }
+        }
+    }
 }
-
-//extension MainViewController: UITableViewDelegate, UITableViewDataSource {
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return viewModel.getNumberOfSections()
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//
-//        switch section {
-//        case 0:
-//            return 1
-//        default:
-//            return viewModel.postViewModels.count
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//        switch indexPath.section {
-//        case 0:
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DiscoverCell", for: indexPath) as? DiscoverCell else { return UITableViewCell() }
-//            cell.configure()
-//            cell.selectionStyle = .none
-//        default:
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell else { return UITableViewCell() }
-//            cell.viewModel = viewModel.getCellViewModel(indexpath: indexPath)
-//            cell.configure()
-//            cell.selectionStyle = .none
-//            return cell
-//        }
-//        return UITableViewCell()
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//
-//        switch indexPath.section {
-//        case 0:
-//            return 200
-//        default:
-//            return 500
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        switch section {
-//        case 1:
-//            guard let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SearchBarHeaderView") as? SearchBarHeaderView else { return UIView() }
-//            cell.configure()
-//            return cell
-//        default:
-//            return nil
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        switch section {
-//        case 1:
-//            return 50
-//        default:
-//            return 0
-//        }
-//    }
-//}
-
