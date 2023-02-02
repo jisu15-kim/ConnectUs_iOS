@@ -17,23 +17,9 @@ class MainViewController: BaseViewController {
     private var subscriptions = Set<AnyCancellable>()
     
     // 스크롤 업 버튼
-    private var offsetY: Float = 600.0
+
     @IBOutlet weak var scrollUpButton: UIButton!
     
-    enum ScrollUpButtonState: CaseIterable {
-        case show
-        case hide
-        
-        var alpha: CGFloat {
-            switch self {
-            case .show:
-                return 1.0
-            case .hide:
-                return 0
-            }
-        }
-    }
-    var scrollButtonState = CurrentValueSubject<ScrollUpButtonState, Never>(.hide)
     
     // CollectionView
     @IBOutlet weak var collectionView: UICollectionView!
@@ -54,7 +40,7 @@ class MainViewController: BaseViewController {
                 self.collectionView.reloadData()
             }.store(in: &subscriptions)
         
-        scrollButtonState
+        viewModel.scrollButtonState
             .sink { [weak self] state in
                 print("Combine으로 들어옴")
                 UIView.animate(withDuration: 0.5, delay: 0.5) {
@@ -121,6 +107,7 @@ class MainViewController: BaseViewController {
         return section
     }
     
+    // 맨 위로 가게 하는 코드
     @IBAction func scrollUpButtonTapped(_ sender: UIButton) {
 
         collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
@@ -168,19 +155,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     
-    
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offset = scrollView.contentOffset.y
-        print("OFFSET: \(offset)")
-        if Float(offset) >= offsetY {
-            if scrollButtonState.value == .hide {
-                scrollButtonState.send(.show)
-            }
-        } else {
-            if scrollButtonState.value == .show {
-                scrollButtonState.send(.hide)
-            }
-        }
+        
+        viewModel.scrollViewOffsetY(scrollView.contentOffset.y)
     }
 }
