@@ -11,7 +11,7 @@ import Kingfisher
 
 class PostCell: UICollectionViewCell {
     
-    var postResult: PostResult?
+    var articleResult: Article?
     var imageSize: Int = 60
     var infoStackSpacingHeight = 10
     
@@ -153,22 +153,22 @@ class PostCell: UICollectionViewCell {
     }
     
     func configure() {
-        guard let result = postResult else { return }
+        guard let result = articleResult else { return }
         
         setupLayout()
         
-        userIdLabel.text = result.userId
-        updateTimeLabel.text = result.updateAt
-        bodyLabel.text = result.content
-        likeCountLabel.text = "\(result.postLikeCount)"
-        commentCountLabel.text = "\(result.commentCount ?? 0)"
+        userIdLabel.text = result.author
+        updateTimeLabel.text = result.publishedAt
+        bodyLabel.text = result.title
+        likeCountLabel.text = "n/a"
+        commentCountLabel.text = "n/a"
 
         // KINGFISHER 이미지 셋업
-        profileImageView.kf.indicatorType = .activity
-        profileImageView.kf.setImage(with: URL(string: result.profileImgUrl ?? ""), placeholder: UIImage(named: "defaultProfile"))
+//        profileImageView.kf.indicatorType = .activity
+        profileImageView.image = Constant.defaultImage
         
         bodyImageView.kf.indicatorType = .activity
-        bodyImageView.kf.setImage(with: URL(string: result.postImgRes?[0].postImgUrl ?? ""))
+        bodyImageView.kf.setImage(with: URL(string: result.urlToImage ?? ""))
 
     }
     

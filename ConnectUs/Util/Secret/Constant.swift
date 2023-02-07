@@ -10,7 +10,7 @@ import Alamofire
 
 struct Constant {
 
-    static let defaultImage = UIImage(named: "default_profile")
+    static let defaultImage = UIImage(named: "defaultProfile")
     
     static let BASE_URL = "https://prod.chaengni.shop"
 

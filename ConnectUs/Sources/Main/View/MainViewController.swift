@@ -17,9 +17,7 @@ class MainViewController: BaseViewController {
     private var subscriptions = Set<AnyCancellable>()
     
     // 스크롤 업 버튼
-
     @IBOutlet weak var scrollUpButton: UIButton!
-    
     
     // CollectionView
     @IBOutlet weak var collectionView: UICollectionView!
@@ -34,7 +32,7 @@ class MainViewController: BaseViewController {
     
     // Combine 바인드 !
     private func bind() {
-        viewModel.postLists
+        viewModel.articleLists
             .receive(on: RunLoop.main)
             .sink { _ in
                 self.collectionView.reloadData()
@@ -124,7 +122,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 0:
             return DummyImage.dummyImageUrl.count
         default:
-            return viewModel.postLists.value.count
+            return viewModel.articleLists.value.count
         }
     }
     
@@ -138,7 +136,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         default:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as? PostCell else { return UICollectionViewCell() }
             
-            cell.postResult = viewModel.postLists.value[indexPath.row]
+            cell.articleResult = viewModel.articleLists.value[indexPath.row]
             cell.configure()
             return cell
         }

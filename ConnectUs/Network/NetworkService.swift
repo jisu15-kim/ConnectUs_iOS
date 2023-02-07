@@ -28,4 +28,21 @@ class NetworkService {
                 }
             })
     }
+    
+    func getNewsNetworkData(completion: @escaping ([Article]) -> Void) {
+        
+        let url = "https://newsapi.org/v2/top-headlines?country=kr&apiKey=\(Secret.newsToken)"
+        
+        AF.request(url)
+            .responseDecodable(of: NewsModel.self, completionHandler: { response in
+                switch response.result {
+                case .success(let response):
+                    print("====성공===")
+                    completion(response.articles)
+                case .failure(let error):
+                    print("====실패===")
+                    print(error)
+                }
+            })
+    }
 }

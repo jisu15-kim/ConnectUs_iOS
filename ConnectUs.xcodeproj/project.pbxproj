@@ -177,6 +177,27 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		CD9751292992B286005AFDC0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CD97512A2992B288005AFDC0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CD97512B2992B28A005AFDC0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		CDE7F07A29817320008F682F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +236,9 @@
 		CDE7F0A029843BB1008F682F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				CD97512B2992B28A005AFDC0 /* Model */,
+				CD97512A2992B288005AFDC0 /* View */,
+				CD9751292992B286005AFDC0 /* ViewModel */,
 				CDE7F0A129843BBA008F682F /* Profile.storyboard */,
 			);
 			path = Profile;

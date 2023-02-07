@@ -10,8 +10,8 @@ import Combine
 
 class MainViewModel {
     
-    init(results: [PostResult] = []) {
-        postLists = CurrentValueSubject(results)
+    init(results: [Article] = []) {
+        articleLists = CurrentValueSubject(results)
     }
     
     enum ScrollUpButtonState: CaseIterable {
@@ -32,7 +32,7 @@ class MainViewModel {
     
     private var offsetY: Float = 600.0
     
-    var postLists: CurrentValueSubject<[PostResult], Never>
+    var articleLists: CurrentValueSubject<[Article], Never>
     
     func getNumberOfSections() -> Int {
         return 3
@@ -40,8 +40,8 @@ class MainViewModel {
     
     //MARK: - Network 통신
     func getPosts() {
-        NetworkService().getFeedsNetworkData { [weak self] posts in
-            self?.postLists.send(posts)
+        NetworkService().getNewsNetworkData() { [weak self] article in
+            self?.articleLists.send(article)
         }
     }
     
