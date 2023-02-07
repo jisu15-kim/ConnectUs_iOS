@@ -20,6 +20,9 @@
 		CD6AE585297EF6BF00720EB9 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6AE57E297EF6BF00720EB9 /* Device.swift */; };
 		CD6AE587297EF6BF00720EB9 /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6AE580297EF6BF00720EB9 /* IndicatorView.swift */; };
 		CD6AE58F297EFB8500720EB9 /* ColorPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6AE58E297EFB8500720EB9 /* ColorPreset.swift */; };
+		CD97512D2992B487005AFDC0 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD97512C2992B487005AFDC0 /* ProfileModel.swift */; };
+		CD97512F2992B4F4005AFDC0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD97512E2992B4F4005AFDC0 /* ProfileViewController.swift */; };
+		CD9751312992B513005AFDC0 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9751302992B513005AFDC0 /* ProfileViewModel.swift */; };
 		CDE7F07C29817348008F682F /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7F07B29817348008F682F /* PostModel.swift */; };
 		CDE7F07E29817383008F682F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7F07D29817383008F682F /* MainViewModel.swift */; };
 		CDE7F080298173FA008F682F /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7F07F298173FA008F682F /* PostCell.swift */; };
@@ -51,6 +54,9 @@
 		CD6AE57E297EF6BF00720EB9 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		CD6AE580297EF6BF00720EB9 /* IndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
 		CD6AE58E297EFB8500720EB9 /* ColorPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreset.swift; sourceTree = "<group>"; };
+		CD97512C2992B487005AFDC0 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		CD97512E2992B4F4005AFDC0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		CD9751302992B513005AFDC0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		CDE7F07B29817348008F682F /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		CDE7F07D29817383008F682F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		CDE7F07F298173FA008F682F /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
@@ -180,6 +186,7 @@
 		CD9751292992B286005AFDC0 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CD9751302992B513005AFDC0 /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -187,6 +194,8 @@
 		CD97512A2992B288005AFDC0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CDE7F0A129843BBA008F682F /* Profile.storyboard */,
+				CD97512E2992B4F4005AFDC0 /* ProfileViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -194,6 +203,7 @@
 		CD97512B2992B28A005AFDC0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CD97512C2992B487005AFDC0 /* ProfileModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -239,7 +249,6 @@
 				CD97512B2992B28A005AFDC0 /* Model */,
 				CD97512A2992B288005AFDC0 /* View */,
 				CD9751292992B286005AFDC0 /* ViewModel */,
-				CDE7F0A129843BBA008F682F /* Profile.storyboard */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -341,8 +350,11 @@
 				CD6AE585297EF6BF00720EB9 /* Device.swift in Sources */,
 				CDE7F07C29817348008F682F /* PostModel.swift in Sources */,
 				CD6AE584297EF6BF00720EB9 /* CustomNavigationController.swift in Sources */,
+				CD97512D2992B487005AFDC0 /* ProfileModel.swift in Sources */,
 				CD6AE578297EF69000720EB9 /* BaseViewController.swift in Sources */,
 				CD6AE563297EF17B00720EB9 /* AppDelegate.swift in Sources */,
+				CD9751312992B513005AFDC0 /* ProfileViewModel.swift in Sources */,
+				CD97512F2992B4F4005AFDC0 /* ProfileViewController.swift in Sources */,
 				CD6AE565297EF17B00720EB9 /* SceneDelegate.swift in Sources */,
 				CDE7F07E29817383008F682F /* MainViewModel.swift in Sources */,
 			);

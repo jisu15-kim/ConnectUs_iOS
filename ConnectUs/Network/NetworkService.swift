@@ -45,4 +45,21 @@ class NetworkService {
                 }
             })
     }
+    
+    func getProfileNetworkData(completion: @escaping ([ProfileResult]) -> Void) {
+        
+        let url = "https://randomuser.me/api"
+        
+        AF.request(url)
+            .responseDecodable(of: ProfileModel.self, completionHandler: { response in
+                switch response.result {
+                case .success(let response):
+                    print("====성공===")
+                    completion(response.results)
+                case .failure(let error):
+                    print("====실패===")
+                    print(error)
+                }
+            })
+    }
 }
