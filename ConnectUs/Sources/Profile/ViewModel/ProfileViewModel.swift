@@ -24,4 +24,8 @@ class ProfileViewModel {
             }
         }
     }
+    
+    func getCollectionViewNumberOfItems() -> Int {
+        return 20
+    }
 }

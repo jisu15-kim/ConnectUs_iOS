@@ -23,6 +23,7 @@
 		CD97512D2992B487005AFDC0 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD97512C2992B487005AFDC0 /* ProfileModel.swift */; };
 		CD97512F2992B4F4005AFDC0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD97512E2992B4F4005AFDC0 /* ProfileViewController.swift */; };
 		CD9751312992B513005AFDC0 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9751302992B513005AFDC0 /* ProfileViewModel.swift */; };
+		CDBECDAD2996A27800B9C1A7 /* FollowInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBECDAC2996A27800B9C1A7 /* FollowInfoCell.swift */; };
 		CDE7F07C29817348008F682F /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7F07B29817348008F682F /* PostModel.swift */; };
 		CDE7F07E29817383008F682F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7F07D29817383008F682F /* MainViewModel.swift */; };
 		CDE7F080298173FA008F682F /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE7F07F298173FA008F682F /* PostCell.swift */; };
@@ -57,6 +58,7 @@
 		CD97512C2992B487005AFDC0 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		CD97512E2992B4F4005AFDC0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CD9751302992B513005AFDC0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		CDBECDAC2996A27800B9C1A7 /* FollowInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowInfoCell.swift; sourceTree = "<group>"; };
 		CDE7F07B29817348008F682F /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		CDE7F07D29817383008F682F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		CDE7F07F298173FA008F682F /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				CDE7F0A129843BBA008F682F /* Profile.storyboard */,
+				CDBECDAC2996A27800B9C1A7 /* FollowInfoCell.swift */,
 				CD97512E2992B4F4005AFDC0 /* ProfileViewController.swift */,
 			);
 			path = View;
@@ -341,6 +344,7 @@
 				CD6AE58F297EFB8500720EB9 /* ColorPreset.swift in Sources */,
 				CDE7F09D29823C72008F682F /* SearchBarHeaderView.swift in Sources */,
 				CDE7F093298193FA008F682F /* Constant.swift in Sources */,
+				CDBECDAD2996A27800B9C1A7 /* FollowInfoCell.swift in Sources */,
 				CDE7F09B29823C63008F682F /* DiscoverCell.swift in Sources */,
 				CDE7F080298173FA008F682F /* PostCell.swift in Sources */,
 				CD6AE581297EF6BF00720EB9 /* UILabel+Padding.swift in Sources */,
